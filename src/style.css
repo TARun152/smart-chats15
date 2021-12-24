@@ -1,0 +1,188 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+::-webkit-scrollbar{
+    width: 5px;
+}
+::-webkit-scrollbar-track{
+    background-color: cornsilk;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #0d6efd;
+}
+::-webkit-scrollbar:horizontal {
+    height: 0;
+    width: 0;
+    display: none;
+  }
+::-webkit-scrollbar-thumb:horizontal {
+    display: none;
+  }
+/* for pixel less than 700 */
+.top{
+    width: 66.9vw;
+}
+/* for dp height cover photo */
+.dp{
+    width: 100%;
+    height: 70vw;
+}
+.dp1{
+    width: 100%;
+}
+/* for login page */
+.responsive{
+    position: relative;
+    left: -2vw;
+}
+/* for upload image div */
+.upload{
+    width:97.5vw;
+}
+.w1{
+    width: 30vw;
+    left: 1.5vw;
+}
+.textarea{
+    width:70vw;
+    height: 5vh;
+}
+.mine{
+    float: right;
+    clear: both;
+}
+.other{
+    float: left;
+    clear: both;
+}
+.midmessage{
+    width: 50vw;
+}
+/* navbar */
+.hide{
+    display: flex;
+}
+.bar{
+    width: 21vw;
+}
+.chat{
+    width: 25vw;
+}
+.textwidth{
+    width: 78%;
+}
+.buttonwidth{
+    width: 16%;
+}
+.arrow{
+    display: none;
+}
+.online{
+    display: none;
+}
+.textheight{
+    height: 55vh;
+}
+.frnds{
+    display: none;
+}
+@media screen and (max-width: 400px){
+    .padding{
+        padding-top: 30px;
+    }
+    .dp1{
+        padding-top: 20px;
+    }
+    .textwidth{
+        width: 70%;
+    }
+    .buttonwidth{
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 310px){
+    .textwidth{
+        width: 65%;
+    }
+    .buttonwidth{
+        width: 25%;
+    }
+}
+@media screen and (max-width: 767px){
+    .hide{
+        display: none;
+    }
+}
+@media screen and (max-width: 900px){
+    .midmessage{
+        width:73vw;
+    }
+    .bar{
+        display: none;
+    }
+    .chat{
+        width: 35vw;
+    }
+    .arrow{
+        display: inline;
+    }
+}
+@media screen and (max-height: 600px){
+    .textheight{
+        height: 50vh;
+    }
+}
+@media screen and (min-height: 900px){
+    .textheight{
+        height: 60vh;
+    }
+}
+@media screen and (max-height: 500px){
+    .dp{
+        height: 60vh;
+    }
+}
+@media screen and (max-width: 625px){
+    .tar{
+        display: none;
+    }
+    .midmessage{
+        width: 98vw;
+    }
+    .chat{
+        width: 50vw;
+    }
+    .online{
+        display: inline;
+    }
+}
+@media screen and (max-width: 700px){
+    /* display of right bar  */
+    .right{
+        display: none;
+    }
+    .top{
+        width: 97vw;
+    }
+    ::-webkit-scrollbar{
+        width: 0px;
+    }
+    .frnds{
+        display: block;
+    }
+}
+@media screen and (max-width: 1020px){
+    .responsive{
+        display: none;
+    }
+    .w1{
+        width: 70vw;
+        left: 3.2vw;
+    }
+}
+.card-body{
+    -webkit-box-shadow: 0px 3px 18px 0px rgba(0,0,0,0.85);
+    -moz-box-shadow: 0px 3px 18px 0px rgba(0,0,0,0.85);
+    box-shadow: 0px 3px 18px 0px rgba(0,0,0,0.85);
+}
