@@ -29,12 +29,12 @@ export default function About(props) {
                 storage
                     .ref("images")
                     .child(postImage.name)
-                    .getDownloadREACT_APP_URL()
-                    .then(REACT_APP_URL=>{
+                    .getDownloadURL()
+                    .then(URL=>{
                         props.progress(70)
                         axios.post(process.env.REACT_APP_URL+'api/posts',{
         userId:props.user._id,
-        img:REACT_APP_URL,
+        img:URL,
         desc:des.current.value
                     }).then(
                         props.progress(100),
