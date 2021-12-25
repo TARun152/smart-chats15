@@ -43,7 +43,7 @@ function App() {
       handleId(sessionStorage.getItem('token'))
   }, [])
   return (
-    <Router basename={window.location.pathname || ''}>
+    <Router>
       <LoadingBar color='white' height='3px' progress={Progress} />
       <Switch>
           <Route exact path="/">
