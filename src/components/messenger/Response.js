@@ -5,7 +5,7 @@ export default function Response(props) {
     useEffect(() => {
         const userid= props.conversation.members.find((m)=>m!==props.user._id)
         const handle=async()=>{
-            const newuser=await axios.get(process.env.URL+`api/users/${userid}`)
+            const newuser=await axios.get(process.env.REACT_APP_URL+`api/users/${userid}`)
             setUser(newuser.data)
         }
         handle()

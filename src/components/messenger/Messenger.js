@@ -55,7 +55,7 @@ export default function Messenger() {
     }, [arrivalMsg,currentchat])
     useEffect(() => {
         const handle=async()=>{
-            const newconvo=await axios.get(process.env.URL+`api/conversation/${user?._id}`)
+            const newconvo=await axios.get(process.env.REACT_APP_URL+`api/conversation/${user?._id}`)
             setconvo(newconvo.data)
         }
         handle()
@@ -64,7 +64,7 @@ export default function Messenger() {
     useEffect(() => {
         const handle=async()=>{
         const receiverId= currentchat?.members.find(member=>member!==user._id)
-        const newuser=await axios.get(process.env.URL+`api/users/${receiverId}`)
+        const newuser=await axios.get(process.env.REACT_APP_URL+`api/users/${receiverId}`)
         setUser(newuser.data)
         }
         handle()
@@ -80,7 +80,7 @@ export default function Messenger() {
             text:newmessage
 
         })
-        const res=await axios.post(process.env.URL+'api/messages',{
+        const res=await axios.post(process.env.REACT_APP_URL+'api/messages',{
             conversationId:currentchat._id,
             sender:user._id,
             text:newmessage
@@ -91,7 +91,7 @@ export default function Messenger() {
     // getting all chats of a convo
     useEffect(() => {
         const handle=async()=>{
-            const newchat= await axios.get(process.env.URL+`api/messages/${currentchat?._id}`)
+            const newchat= await axios.get(process.env.REACT_APP_URL+`api/messages/${currentchat?._id}`)
             setchat(newchat.data)
         }
         handle()
@@ -101,25 +101,25 @@ export default function Messenger() {
         scrollRef.current?.scrollIntoView({behavior:'smooth',block:'end'})
     }, [chat])
     const handleclick=async(id)=>{
-        const res=await axios.get(process.env.URL+`api/conversation/${id}/${user._id}`)
+        const res=await axios.get(process.env.REACT_APP_URL+`api/conversation/${id}/${user._id}`)
         setcurrentchat(res.data)
     }
     // for new convo and all
     const convohandle=async(id)=>{
-        const res=await axios.get(process.env.URL+`api/conversation/${id}/${user._id}`)
+        const res=await axios.get(process.env.REACT_APP_URL+`api/conversation/${id}/${user._id}`)
         if(res.data!=="no convo")
         {
         setcurrentchat(res.data)
         }
         else
         {
-           const res= await axios.post(process.env.URL+'api/conversation',{
+           const res= await axios.post(process.env.REACT_APP_URL+'api/conversation',{
                 senderId: user._id,
                 receiverId: id
             })
             if(res.data)
             {
-                const res=await axios.get(process.env.URL+`api/conversation/${id}/${user._id}`)
+                const res=await axios.get(process.env.REACT_APP_URL+`api/conversation/${id}/${user._id}`)
                 // a convo of2 users include members
                 setcurrentchat(res.data)
             }

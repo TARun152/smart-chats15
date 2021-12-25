@@ -14,7 +14,7 @@ export default function Profile(props) {
     const {username}=useParams()
     useEffect(() => {
         const handle=async()=>{
-            const user1=await axios.get(process.env.URL+`api/users/name/${username}`)
+            const user1=await axios.get(process.env.REACT_APP_URL+`api/users/name/${username}`)
             setuser(user1.data)
         }
         handle()

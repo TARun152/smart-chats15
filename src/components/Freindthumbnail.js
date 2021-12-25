@@ -6,7 +6,7 @@ export default function Freindthumbnail(props) {
     const [user, setuser] = useState({})
     useEffect(() => {
         const fetchdata=async ()=>{
-            const res=await axios.get(process.env.URL+`api/users/${props.id}`)
+            const res=await axios.get(process.env.REACT_APP_URL+`api/users/${props.id}`)
             setuser(res.data)
         }
         fetchdata()

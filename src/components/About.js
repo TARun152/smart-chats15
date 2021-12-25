@@ -29,12 +29,12 @@ export default function About(props) {
                 storage
                     .ref("images")
                     .child(postImage.name)
-                    .getDownloadURL()
-                    .then(url=>{
+                    .getDownloadREACT_APP_URL()
+                    .then(REACT_APP_URL=>{
                         props.progress(70)
-                        axios.post(process.env.URL+'api/posts',{
+                        axios.post(process.env.REACT_APP_URL+'api/posts',{
         userId:props.user._id,
-        img:url,
+        img:REACT_APP_URL,
         desc:des.current.value
                     }).then(
                         props.progress(100),
@@ -68,7 +68,7 @@ export default function About(props) {
   const handlefollow=async()=>{
     if(!followed)
     {
-    const res=await axios.put(process.env.URL+`api/users/${props.user?._id}/follow`,{
+    const res=await axios.put(process.env.REACT_APP_URL+`api/users/${props.user?._id}/follow`,{
       userId: curruser?._id
     })
     if(res.data==="you are following")
@@ -77,7 +77,7 @@ export default function About(props) {
     }
   }
   else{
-    const res=await axios.put(process.env.URL+`api/users/${props.user?._id}/unfollow`,{
+    const res=await axios.put(process.env.REACT_APP_URL+`api/users/${props.user?._id}/unfollow`,{
       userId: curruser?._id
     })
     if(res.data==="you are unfollowing")
@@ -91,7 +91,7 @@ export default function About(props) {
     e.preventDefault()
     if(city!==""||from!==""||relation!==""||desc!=="")
     {
-    const res=await axios.put(process.env.URL+`api/users/${curruser?._id}`,{
+    const res=await axios.put(process.env.REACT_APP_URL+`api/users/${curruser?._id}`,{
       city:city!==""?city:curruser.city,
       from: from!==""?from:curruser.from,
       relationship:relation!==""?relation:curruser.relationship,

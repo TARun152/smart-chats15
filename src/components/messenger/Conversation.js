@@ -6,7 +6,7 @@ export default function Conversation(props) {
     const [User, setUser] = useState(null)
     useEffect(() => {
         const handle=async()=>{
-            const newuser=await axios.get(process.env.URL+`api/users/${props.conversation}`)
+            const newuser=await axios.get(process.env.REACT_APP_URL+`api/users/${props.conversation}`)
             setUser(newuser.data)
         }
         handle()

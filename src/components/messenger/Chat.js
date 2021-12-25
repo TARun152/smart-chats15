@@ -8,7 +8,7 @@ export default function Chat(props) {
     const [User, setUser] = useState(null)
     useEffect(() => {
         const handle=async()=>{
-            const newuser=await axios.get(process.env.URL+`api/users/${props.msg.sender}`)
+            const newuser=await axios.get(process.env.REACT_APP_URL+`api/users/${props.msg.sender}`)
             setUser(newuser.data)
         }
         handle()

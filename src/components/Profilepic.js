@@ -36,10 +36,10 @@ export default function Profilepic(props) {
                     .ref("images")
                     .child(profile?.name)
                     .getDownloadURL()
-                    .then(url => {
+                    .then(URL => {
                         props.progress(70)
-                        axios.put(process.env.URL+`api/users/${props.user?._id}`, {
-                            profilePicture: url
+                        axios.put(process.env.REACT_APP_URL+`api/users/${props.user?._id}`, {
+                            profilePicture: URL
                         }).then(
                             props.progress(100),
                             history.push('/')
@@ -65,10 +65,10 @@ export default function Profilepic(props) {
                     .ref("images")
                     .child(cover?.name)
                     .getDownloadURL()
-                    .then(url => {
+                    .then(URL => {
                         props.progress(70)
-                        axios.put(process.env.URL+`api/users/${props.user?._id}`, {
-                            coverPicture: url
+                        axios.put(process.env.REACT_APP_URL+`api/users/${props.user?._id}`, {
+                            coverPicture: URL
                         }).then(
                             props.progress(100),
                             history.push('/')
