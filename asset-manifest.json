@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/smart-chats15/static/css/main.285de046.chunk.css",
-    "main.js": "/smart-chats15/static/js/main.78c84f95.chunk.js",
-    "main.js.map": "/smart-chats15/static/js/main.78c84f95.chunk.js.map",
+    "main.js": "/smart-chats15/static/js/main.671789bb.chunk.js",
+    "main.js.map": "/smart-chats15/static/js/main.671789bb.chunk.js.map",
     "runtime-main.js": "/smart-chats15/static/js/runtime-main.e1cb369a.js",
     "runtime-main.js.map": "/smart-chats15/static/js/runtime-main.e1cb369a.js.map",
     "static/js/2.be4f6016.chunk.js": "/smart-chats15/static/js/2.be4f6016.chunk.js",
@@ -21,6 +21,6 @@
     "static/js/runtime-main.e1cb369a.js",
     "static/js/2.be4f6016.chunk.js",
     "static/css/main.285de046.chunk.css",
-    "static/js/main.78c84f95.chunk.js"
+    "static/js/main.671789bb.chunk.js"
   ]
 }
