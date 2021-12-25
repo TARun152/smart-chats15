@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/TARun152/smart-chats15.git/static/css/main.285de046.chunk.css",
-    "main.js": "/TARun152/smart-chats15.git/static/js/main.81827d93.chunk.js",
-    "main.js.map": "/TARun152/smart-chats15.git/static/js/main.81827d93.chunk.js.map",
-    "runtime-main.js": "/TARun152/smart-chats15.git/static/js/runtime-main.6a97fc3a.js",
-    "runtime-main.js.map": "/TARun152/smart-chats15.git/static/js/runtime-main.6a97fc3a.js.map",
-    "static/js/2.a34af67a.chunk.js": "/TARun152/smart-chats15.git/static/js/2.a34af67a.chunk.js",
-    "static/js/2.a34af67a.chunk.js.map": "/TARun152/smart-chats15.git/static/js/2.a34af67a.chunk.js.map",
-    "static/js/3.7a6d4114.chunk.js": "/TARun152/smart-chats15.git/static/js/3.7a6d4114.chunk.js",
-    "static/js/3.7a6d4114.chunk.js.map": "/TARun152/smart-chats15.git/static/js/3.7a6d4114.chunk.js.map",
-    "index.html": "/TARun152/smart-chats15.git/index.html",
-    "static/css/main.285de046.chunk.css.map": "/TARun152/smart-chats15.git/static/css/main.285de046.chunk.css.map",
-    "static/js/2.a34af67a.chunk.js.LICENSE.txt": "/TARun152/smart-chats15.git/static/js/2.a34af67a.chunk.js.LICENSE.txt",
-    "static/media/cover.aa52ea16.jpg": "/TARun152/smart-chats15.git/static/media/cover.aa52ea16.jpg",
-    "static/media/crowd1.7f73f4a1.jpg": "/TARun152/smart-chats15.git/static/media/crowd1.7f73f4a1.jpg",
-    "static/media/gift-1020-542634.2852fa24.png": "/TARun152/smart-chats15.git/static/media/gift-1020-542634.2852fa24.png",
-    "static/media/user.2fda6558.png": "/TARun152/smart-chats15.git/static/media/user.2fda6558.png"
+    "main.css": "/smart-chats15/static/css/main.285de046.chunk.css",
+    "main.js": "/smart-chats15/static/js/main.25469457.chunk.js",
+    "main.js.map": "/smart-chats15/static/js/main.25469457.chunk.js.map",
+    "runtime-main.js": "/smart-chats15/static/js/runtime-main.e10dbb2c.js",
+    "runtime-main.js.map": "/smart-chats15/static/js/runtime-main.e10dbb2c.js.map",
+    "static/js/2.a34af67a.chunk.js": "/smart-chats15/static/js/2.a34af67a.chunk.js",
+    "static/js/2.a34af67a.chunk.js.map": "/smart-chats15/static/js/2.a34af67a.chunk.js.map",
+    "static/js/3.7a6d4114.chunk.js": "/smart-chats15/static/js/3.7a6d4114.chunk.js",
+    "static/js/3.7a6d4114.chunk.js.map": "/smart-chats15/static/js/3.7a6d4114.chunk.js.map",
+    "index.html": "/smart-chats15/index.html",
+    "static/css/main.285de046.chunk.css.map": "/smart-chats15/static/css/main.285de046.chunk.css.map",
+    "static/js/2.a34af67a.chunk.js.LICENSE.txt": "/smart-chats15/static/js/2.a34af67a.chunk.js.LICENSE.txt",
+    "static/media/cover.aa52ea16.jpg": "/smart-chats15/static/media/cover.aa52ea16.jpg",
+    "static/media/crowd1.7f73f4a1.jpg": "/smart-chats15/static/media/crowd1.7f73f4a1.jpg",
+    "static/media/gift-1020-542634.2852fa24.png": "/smart-chats15/static/media/gift-1020-542634.2852fa24.png",
+    "static/media/user.2fda6558.png": "/smart-chats15/static/media/user.2fda6558.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.6a97fc3a.js",
+    "static/js/runtime-main.e10dbb2c.js",
     "static/js/2.a34af67a.chunk.js",
     "static/css/main.285de046.chunk.css",
-    "static/js/main.81827d93.chunk.js"
+    "static/js/main.25469457.chunk.js"
   ]
 }
