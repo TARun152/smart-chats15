@@ -26,7 +26,7 @@ export default function Info(props) {
   const handlefollow=async()=>{
     if(!followed)
     {
-    const res=await axios.put(process.Env.PORT+`api/users/${props.user?._id}/follow`,{
+    const res=await axios.put(process.env.URL+`api/users/${props.user?._id}/follow`,{
       userId: curruser?._id
     })
     if(res.data==="you are following")
@@ -35,7 +35,7 @@ export default function Info(props) {
     }
   }
   else{
-    const res=await axios.put(process.Env.PORT+`api/users/${props.user?._id}/unfollow`,{
+    const res=await axios.put(process.env.URL+`api/users/${props.user?._id}/unfollow`,{
       userId: curruser?._id
     })
     if(res.data==="you are unfollowing")
@@ -49,7 +49,7 @@ export default function Info(props) {
     e.preventDefault()
     if(city!==""||from!==""||relation!==""||desc!=="")
     {
-    const res=await axios.put(process.Env.PORT+`api/users/${curruser?._id}`,{
+    const res=await axios.put(process.env.URL+`api/users/${curruser?._id}`,{
       city:city!==""?city:curruser.city,
       from: from!==""?from:curruser.from,
       relationship:relation!==""?relation:curruser.relationship,

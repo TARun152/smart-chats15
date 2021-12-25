@@ -17,7 +17,7 @@ export default function Navbar() {
   const [search, setsearch] = useState("")
   const handleSearch = async (e) => {
     e.preventDefault()
-    const res = await axios.get(process.Env.PORT+`api/users/find/${search}`)
+    const res = await axios.get(process.env.URL+`api/users/find/${search}`)
     history.push(`/search/${search}`)
     console.log(res.data)
   }

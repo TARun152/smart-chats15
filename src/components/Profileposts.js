@@ -8,7 +8,7 @@ export default function Profileposts(props) {
     useEffect(() => {
         const getpost=async()=>{
             try{
-            const res= await axios.get(process.Env.PORT+`api/posts/all/${props.user?._id}`)
+            const res= await axios.get(process.env.URL+`api/posts/all/${props.user?._id}`)
             setposts(res.data.sort((p1,p2)=>{
                 // for sorting latest post on top
                 return new Date(p2.createdAt)-new Date(p1.createdAt)

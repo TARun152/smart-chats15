@@ -23,7 +23,7 @@ export default function Post(props) {
     }, [isLiked])
     useEffect(() => {
         const fetchdata=async ()=>{
-            const res=await axios.get(process.Env.PORT+`api/users/${props.post?.userId}`)
+            const res=await axios.get(process.env.URL+`api/users/${props.post?.userId}`)
             setuser(res.data)
         }
         fetchdata()
@@ -32,14 +32,14 @@ export default function Post(props) {
        setlikes(isLiked? likes-1:likes+1)
        setheart(isLiked? "far":"fas")
        setisLiked(!isLiked)
-        await axios.put(process.Env.PORT+`api/posts/${props.post._id}/like`,{userId:curruser._id})
+        await axios.put(process.env.URL+`api/posts/${props.post._id}/like`,{userId:curruser._id})
         console.log(user._id)
         console.log(curruser._id)
     }
     const handledelete=async()=>{
         if(window.confirm("Are you sure,you want to delete this post??"))
         {
-            const res=await axios.delete(process.Env.PORT+`api/posts/${props.post._id}`)
+            const res=await axios.delete(process.env.URL+`api/posts/${props.post._id}`)
             if(res.data==="successfully deleted")
             {
                 history.push(`/`)
