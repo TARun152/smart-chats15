@@ -11,7 +11,7 @@ export default function Middlebar() {
     useEffect(() => {
         const getpost = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/posts/timeline/${user?._id}`)
+                const res = await axios.get(process.Env.PORT+`api/posts/timeline/${user?._id}`)
                 setposts(res.data.sort((p1, p2) => {
                     // for sorting latest post on top
                     return new Date(p2.createdAt) - new Date(p1.createdAt)
@@ -22,7 +22,7 @@ export default function Middlebar() {
         }
         getpost()
         const handle = async () => {
-            const res = await axios.get(`http://localhost:5000/api/users/`)
+            const res = await axios.get(process.Env.PORT+`api/users/`)
             setusers(res.data)
         }
         handle()

@@ -5,7 +5,7 @@ export default function Onlinefriends(props) {
     const [user, setuser] = useState({})
     useEffect(() => {
         const fetchdata=async ()=>{
-            const res=await axios.get(`http://localhost:5000/api/users/${props.id}`)
+            const res=await axios.get(process.Env.PORT+`api/users/${props.id}`)
             setuser(res.data)
         }
         fetchdata()

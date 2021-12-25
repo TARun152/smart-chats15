@@ -22,7 +22,7 @@ export default function Register() {
                 cpassword: cpassword.current.value
             }
             try {
-                await axios.post('http://localhost:5000/api/auth',newuser)
+                await axios.post(process.Env.PORT+'api/auth',newuser)
                 history.push('/login')
             } catch (error) {
                 console.log(error)

@@ -38,7 +38,7 @@ export default function Profilepic(props) {
                     .getDownloadURL()
                     .then(url => {
                         props.progress(70)
-                        axios.put(`http://localhost:5000/api/users/${props.user?._id}`, {
+                        axios.put(process.Env.PORT+`api/users/${props.user?._id}`, {
                             profilePicture: url
                         }).then(
                             props.progress(100),
@@ -67,7 +67,7 @@ export default function Profilepic(props) {
                     .getDownloadURL()
                     .then(url => {
                         props.progress(70)
-                        axios.put(`http://localhost:5000/api/users/${props.user?._id}`, {
+                        axios.put(process.Env.PORT+`api/users/${props.user?._id}`, {
                             coverPicture: url
                         }).then(
                             props.progress(100),

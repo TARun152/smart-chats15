@@ -11,7 +11,7 @@ export default function Search() {
     const {user} = useContext(AuthContext)
     useEffect(() => {
         const handle = async () => {
-            const res = await axios.get(`http://localhost:5000/api/users/`)
+            const res = await axios.get(process.Env.PORT+`api/users/`)
             const userArray = res.data.filter((e) => e.name.includes(username))
             setusers(userArray)
         }
