@@ -99,8 +99,11 @@ export default function Messenger() {
     // scrolling to end
     useEffect(() => {
     var scroll=document.getElementById("scrollable")
+    if(scroll)
+    {
     scroll.scrollTop = scroll.scrollHeight;
     scroll.animate({scrollTop: scroll.scrollHeight});
+    }
     }, [chat])
     const handleclick=async(id)=>{
         const res=await axios.get(process.env.REACT_APP_URL+`api/conversation/${id}/${user._id}`)
