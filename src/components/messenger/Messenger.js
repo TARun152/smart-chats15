@@ -20,7 +20,7 @@ export default function Messenger() {
     const [messages, setmessages] = useState(null)
     const [onlineUsers, setonlineUsers] = useState([])
     useEffect(() => {
-       socket.current=(io("ws://localhost:8800"))
+       socket.current=io.connect("https://socketio15.herokuapp.com/")
        socket.current.on("getMessage",data=>{
         setarrivalMsg({
             sender:data.senderId,
@@ -98,7 +98,9 @@ export default function Messenger() {
     }, [currentchat,messages])
     // scrolling to end
     useEffect(() => {
-        scrollRef.current?.scrollIntoView({behavior:'smooth',block:'end'})
+    var scroll=document.getElementById("scrollable")
+    scroll.scrollTop = scroll.scrollHeight;
+    scroll.animate({scrollTop: scroll.scrollHeight});
     }, [chat])
     const handleclick=async(id)=>{
         const res=await axios.get(process.env.REACT_APP_URL+`api/conversation/${id}/${user._id}`)
@@ -213,14 +215,12 @@ export default function Messenger() {
                 </div>
                 <hr />
                 {/* for all chats between two users */}
-                <div className="textheight" style={{overflowY:'scroll',overflowX:'hidden'}}>
-                        <div ref={scrollRef}>
+                <div className="textheight" id="scrollable" style={{overflowY:'scroll',overflowX:'hidden'}}>
                         {
                         chat&&chat.map((e)=>(
                              <Chat msg={e}/>
                         ))
 }
-                </div>
                 </div>
                 <div style={{display:'flex',position:'absolute',bottom:'50px',width:'100%'}}>
                 <textarea className="textwidth" placeholder="Write something...." style={{resize:'none',height:'20vh',borderRadius:'5px'}} value={newmessage} onChange={(e)=>setnewmessage(e.target.value)}></textarea>
