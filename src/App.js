@@ -20,14 +20,14 @@ function App() {
   const {user,dispatch}= useContext(AuthContext)
   // used for user not logging out on refresh
   const getUser=async(id)=>{
-    const user1=await axios.get(process.Env.PORT+`api/users/${id}`)
+    const user1=await axios.get(process.env.REACT_APP_URL+`api/users/${id}`)
     dispatch({type: "LOGIN_SUCCESS",payload: user1.data})
     console.log(user1.data)
   }
   const [Progress,setProgress] = useState(0);
   const handleId=async(token)=>{
     try{
-    const res=await axios.get(process.Env.PORT+'api/auth/verify',{
+    const res=await axios.get(process.env.REACT_APP_URL+'api/auth/verify',{
       headers:{
         token
       }
