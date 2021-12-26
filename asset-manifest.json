@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/smart-chats15/static/css/main.285de046.chunk.css",
-    "main.js": "/smart-chats15/static/js/main.a77ee96a.chunk.js",
-    "main.js.map": "/smart-chats15/static/js/main.a77ee96a.chunk.js.map",
-    "runtime-main.js": "/smart-chats15/static/js/runtime-main.e1cb369a.js",
-    "runtime-main.js.map": "/smart-chats15/static/js/runtime-main.e1cb369a.js.map",
-    "static/js/2.e0e42a45.chunk.js": "/smart-chats15/static/js/2.e0e42a45.chunk.js",
-    "static/js/2.e0e42a45.chunk.js.map": "/smart-chats15/static/js/2.e0e42a45.chunk.js.map",
-    "static/js/3.7a6b3100.chunk.js": "/smart-chats15/static/js/3.7a6b3100.chunk.js",
-    "static/js/3.7a6b3100.chunk.js.map": "/smart-chats15/static/js/3.7a6b3100.chunk.js.map",
+    "main.js": "/smart-chats15/static/js/main.0dd33821.chunk.js",
+    "main.js.map": "/smart-chats15/static/js/main.0dd33821.chunk.js.map",
+    "runtime-main.js": "/smart-chats15/static/js/runtime-main.e10dbb2c.js",
+    "runtime-main.js.map": "/smart-chats15/static/js/runtime-main.e10dbb2c.js.map",
+    "static/js/2.a34af67a.chunk.js": "/smart-chats15/static/js/2.a34af67a.chunk.js",
+    "static/js/2.a34af67a.chunk.js.map": "/smart-chats15/static/js/2.a34af67a.chunk.js.map",
+    "static/js/3.7a6d4114.chunk.js": "/smart-chats15/static/js/3.7a6d4114.chunk.js",
+    "static/js/3.7a6d4114.chunk.js.map": "/smart-chats15/static/js/3.7a6d4114.chunk.js.map",
     "index.html": "/smart-chats15/index.html",
     "static/css/main.285de046.chunk.css.map": "/smart-chats15/static/css/main.285de046.chunk.css.map",
-    "static/js/2.e0e42a45.chunk.js.LICENSE.txt": "/smart-chats15/static/js/2.e0e42a45.chunk.js.LICENSE.txt",
+    "static/js/2.a34af67a.chunk.js.LICENSE.txt": "/smart-chats15/static/js/2.a34af67a.chunk.js.LICENSE.txt",
     "static/media/cover.aa52ea16.jpg": "/smart-chats15/static/media/cover.aa52ea16.jpg",
     "static/media/crowd1.7f73f4a1.jpg": "/smart-chats15/static/media/crowd1.7f73f4a1.jpg",
     "static/media/gift-1020-542634.2852fa24.png": "/smart-chats15/static/media/gift-1020-542634.2852fa24.png",
-    "static/media/user.png": "/smart-chats15/static/media/user.2fda6558.png"
+    "static/media/user.2fda6558.png": "/smart-chats15/static/media/user.2fda6558.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.e1cb369a.js",
-    "static/js/2.e0e42a45.chunk.js",
+    "static/js/runtime-main.e10dbb2c.js",
+    "static/js/2.a34af67a.chunk.js",
     "static/css/main.285de046.chunk.css",
-    "static/js/main.a77ee96a.chunk.js"
+    "static/js/main.0dd33821.chunk.js"
   ]
 }
