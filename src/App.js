@@ -17,11 +17,12 @@ import { Redirect } from 'react-router';
 import { useContext,useState,useEffect } from 'react';
 import axios from 'axios';
 function App() {
-  const {user,dispatch}= useContext(AuthContext)
+  const {user,setisFetching,setuser,token}= useContext(AuthContext)
   // used for user not logging out on refresh
   const getUser=async(id)=>{
     const user1=await axios.get(process.env.REACT_APP_URL+`api/users/${id}`)
-    dispatch({type: "LOGIN_SUCCESS",payload: user1.data})
+    setuser(user1.data)
+    setisFetching(false)
     console.log(user1.data)
   }
   const [Progress,setProgress] = useState(0);
@@ -41,28 +42,28 @@ function App() {
   useEffect(() => {
       if(sessionStorage.getItem('token'))
       handleId(sessionStorage.getItem('token'))
-  }, [])
+  }, [token])
   return (
     <Router basename="/smart-chats15">
       <LoadingBar color='white' height='3px' progress={Progress} />
       <Switch>
           <Route exact path="/">
-            {user||sessionStorage.getItem('token')?<Home />:<Register/>}
+            {user?._id||token||sessionStorage.getItem('token')?<Home />:<Register/>}
           </Route>
           <Route exact path="/messenger">
-            {user||sessionStorage.getItem('token')?<Messenger/>:<Register/>}
+            {user?._id||token||sessionStorage.getItem('token')?<Messenger/>:<Register/>}
           </Route>
           <Route exact path="/login">
-          {user||sessionStorage.getItem('token')?<Redirect to="/" />:<Login/>}
+          {user?._id||token||sessionStorage.getItem('token')?<Redirect to="/" />:<Login/>}
           </Route>
           <Route exact path="/signup">
-          {user||sessionStorage.getItem('token')?<Redirect to="/" />:<Register/>}
+          {user?._id||token||sessionStorage.getItem('token')?<Redirect to="/" />:<Register/>}
           </Route>
           <Route exact path="/profile/:username">
-          {user||sessionStorage.getItem('token')?<Profile progress={setProgress}/>:<Register/>}
+          {user?._id||token||sessionStorage.getItem('token')?<Profile progress={setProgress}/>:<Register/>}
           </Route>
           <Route exact path="/search/:username">
-            {user||sessionStorage.getItem('token')?<Search/>:<Register/>}
+            {user?._id||token||sessionStorage.getItem('token')?<Search/>:<Register/>}
           </Route>
         </Switch>
         </Router>

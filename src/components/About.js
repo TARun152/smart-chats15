@@ -46,14 +46,14 @@ export default function About(props) {
         )
     }
     const des = useRef()
-    const [followed, setfollowed] = useState(props.user?.followers.includes(curruser?._id))
+    const [followed, setfollowed] = useState(props.user?.followers?.includes(curruser?._id))
   const [friends, setfriends] = useState(null)
   useEffect(() => {
     console.log(curruser?._id)
     console.log(props.user?._id)
-    console.log(props.user?.followers.includes(curruser?._id))
-    setfollowed(props.user?.followers.includes(curruser?._id))
-  }, [curruser,props.user?._id])
+    console.log(props.user?.followers?.includes(curruser?._id))
+    setfollowed(props.user?.followers?.includes(curruser?._id))
+  }, [])
   useEffect(() => {
     let a = props.user?.following
     if (props.user?.following) {

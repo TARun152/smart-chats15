@@ -22,7 +22,7 @@ export default function Profileposts(props) {
     }, [props.user])
     return (
         <>
-        {curruser?._id===props.user?._id||props.user?.followers.includes(curruser?._id)?
+        {curruser?._id===props.user?._id||curruser?.following?.includes(props.user?._id)?
         <div>
             {posts?.length!==0?
         <>

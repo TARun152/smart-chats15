@@ -1,16 +1,36 @@
 import React, { useContext, useRef } from 'react'
-import { loginCall } from '../components/apiCalls'
+import axios from "axios";
 import { AuthContext } from '../components/context/AuthContext'
 import { CircularProgress } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Login() {
     const email = useRef()
     const password = useRef()
-    const { user, isFetching, error, dispatch } = useContext(AuthContext)
-    const handleclick = (e) => {
+    const {  isFetching ,setisFetching,settoken} = useContext(AuthContext)
+    const handleclick = async(e) => {
+        setisFetching(true)
         e.preventDefault()
-        loginCall({ email: email.current.value, password: password.current.value }, dispatch)
-        
+        try {
+            const res = await axios.post(process.env.REACT_APP_URL+'api/auth/login',
+            {
+                email: email.current.value, password: password.current.value 
+            })
+            if(res.data?.msg)
+            {
+                toast.error(res.data.msg)
+                setisFetching(false)
+            }
+            else
+            {
+            sessionStorage.setItem('token',res.data.token)
+            settoken(res.data.token)
+            }
+        } catch (error) {
+            toast.error(error)
+                setisFetching(false)
+        }
     }
     return (
         <div style={{display:'flex',alignItems:'center',justifyContent:'center',height:'100vh',backgroundColor: 'rgb(198 195 195)'}}>
@@ -24,6 +44,7 @@ export default function Login() {
                     <div style={{ width: '90%' ,display: 'flex', justifyContent: 'center', position: 'relative', top: '75px',textAlign:'center'}}><b>Don't have an account?<Link to='/signup' >Create Account</Link></b></div>
             </form>
         </div>
+        <ToastContainer />
     </div>
     )
 }

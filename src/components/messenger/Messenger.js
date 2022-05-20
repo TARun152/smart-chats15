@@ -8,29 +8,35 @@ import io from 'socket.io-client'
 import Onlinefriends from '../Onlinefriends'
 import image from '../../assests/user.png'
 export default function Messenger() {
-    const [friends, setfriends] = useState(null)
+    const [friends, setfriends] = useState([])
     const {user} = useContext(AuthContext)
     const socket = useRef()
-    const scrollRef = useRef()
-    const [convo, setconvo] = useState(null)
     const [newmessage, setnewmessage] = useState("")
-    const [currentchat, setcurrentchat] = useState(null)
+    const [currentConvo, setcurrentConvo] = useState(null)
     const [chat,setchat]=useState(null)
     const [arrivalMsg, setarrivalMsg] = useState(null)
-    const [messages, setmessages] = useState(null)
     const [onlineUsers, setonlineUsers] = useState([])
+    const handleChat=async()=>{
+        console.log(currentConvo)
+        const newchat= await axios.get(process.env.REACT_APP_URL+`api/messages/${currentConvo?._id}`)
+        setchat(newchat.data)
+        // console.log(chat)
+    }
     useEffect(() => {
+        // conecting to socket server
        socket.current=io.connect("https://socketio15.herokuapp.com/")
+    //    this will run from server side ...its used for real time messaging
        socket.current.on("getMessage",data=>{
         setarrivalMsg({
-            sender:data.senderId,
-            text:data.text,
-            createdAt: Date.now()
+            senderId:data.senderId,
+            text:data.text
         })
-       })
+    })
     }, [])
     useEffect(() => {
-        // sending something on socket server
+        if(user)
+        {
+            // requesting server side to run this...this will add a user in user array on server side
        socket.current.emit("addUser",user?._id)
        let a=user?.following
         if(user?.following)
@@ -43,59 +49,57 @@ export default function Messenger() {
         }
         if(a?.length!==0)
         setfriends(a)
+    }
         
     }, [user])
     useEffect(() => {
+        if(friends&&friends.length>0)
+        {
+            // socket server requested to run this function
         socket.current.on("getUser",users=>{
             setonlineUsers(friends?.filter(f=>users.some(u=>u.userId===f)))
         })
+    }
     }, [friends])
-    useEffect(() => {
-        arrivalMsg&&currentchat?.members.includes(arrivalMsg.sender)&&setmessages(arrivalMsg)
-    }, [arrivalMsg,currentchat])
-    useEffect(() => {
-        const handle=async()=>{
-            const newconvo=await axios.get(process.env.REACT_APP_URL+`api/conversation/${user?._id}`)
-            setconvo(newconvo.data)
-        }
-        handle()
-    }, [user?._id])
     const [User, setUser] = useState(null)
     useEffect(() => {
         const handle=async()=>{
-        const receiverId= currentchat?.members.find(member=>member!==user._id)
+        const receiverId= currentConvo?.members?.find(member=>member!==user._id)
         const newuser=await axios.get(process.env.REACT_APP_URL+`api/users/${receiverId}`)
         setUser(newuser.data)
         }
         handle()
-    }, [currentchat])
+    }, [currentConvo])
     // created new msg
     const handlemsg=async()=>{
         // sending msg to socket
-        const receiverId= currentchat.members.find(member=>member!==user._id)
+        const receiverId= currentConvo.members?.find(member=>member!==user._id)
         console.log(receiverId)
-        socket.current.emit("sendMessage",{
-            senderId:user._id,
-            receiverId,
-            text:newmessage
-
-        })
-        const res=await axios.post(process.env.REACT_APP_URL+'api/messages',{
-            conversationId:currentchat._id,
+        axios.post(process.env.REACT_APP_URL+'api/messages',{
+            conversationId:currentConvo._id,
             sender:user._id,
             text:newmessage
         })
-        setmessages(res.data)
+        .then((res)=>{
+            socket.current.emit("sendMessage",{
+                senderId:user._id,
+                receiverId,
+                text:newmessage
+    
+            })
+            // setmessages([...messages,res.data])
         setnewmessage("")
+        handleChat()
+        })
+        .catch(err=>console.log(err))
     }
     // getting all chats of a convo
     useEffect(() => {
-        const handle=async()=>{
-            const newchat= await axios.get(process.env.REACT_APP_URL+`api/messages/${currentchat?._id}`)
-            setchat(newchat.data)
-        }
-        handle()
-    }, [currentchat,messages])
+        if(currentConvo?._id)
+        {
+        handleChat()
+    }
+    }, [currentConvo,arrivalMsg])
     // scrolling to end
     useEffect(() => {
     var scroll=document.getElementById("scrollable")
@@ -105,16 +109,14 @@ export default function Messenger() {
     scroll.animate({scrollTop: scroll.scrollHeight});
     }
     }, [chat])
-    const handleclick=async(id)=>{
-        const res=await axios.get(process.env.REACT_APP_URL+`api/conversation/${id}/${user._id}`)
-        setcurrentchat(res.data)
-    }
-    // for new convo and all
+    // for new convo and all 
+    // getting convo with a frnd if already exist and creating one if dont exist
+    // 1st step
     const convohandle=async(id)=>{
         const res=await axios.get(process.env.REACT_APP_URL+`api/conversation/${id}/${user._id}`)
         if(res.data!=="no convo")
         {
-        setcurrentchat(res.data)
+        setcurrentConvo(res.data)
         }
         else
         {
@@ -126,7 +128,7 @@ export default function Messenger() {
             {
                 const res=await axios.get(process.env.REACT_APP_URL+`api/conversation/${id}/${user._id}`)
                 // a convo of2 users include members
-                setcurrentchat(res.data)
+                setcurrentConvo(res.data)
             }
         }
     }
@@ -152,7 +154,7 @@ export default function Messenger() {
       <div className="midmessage" style={{ position: 'relative', top: '57px', left: '2vw' }}>
       <div className="card mb-3" style={{ height:'97.8vh'}}>
             <div className="card-body">
-            { currentchat?
+            { currentConvo?
             <>
                 <div style={{height:'5vh',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
                     <div>
@@ -202,7 +204,7 @@ export default function Messenger() {
       <ul className="nav nav-pills flex-column mb-auto">
       {
          onlineUsers&&onlineUsers.length!==0?onlineUsers.map((e)=>(
-             <li data-bs-dismiss="modal" onClick={()=>handleclick(e)} style={{cursor:'pointer'}}>
+             <li data-bs-dismiss="modal" onClick={()=>convohandle(e)} style={{cursor:'pointer'}}>
             <Onlinefriends id={e}/>
             </li>
     )):<div><b>No one is online</b></div>
@@ -270,7 +272,7 @@ export default function Messenger() {
           <hr />
         {
          onlineUsers&&onlineUsers.length!==0?onlineUsers.map((e)=>(
-             <li onClick={()=>handleclick(e)} style={{cursor:'pointer'}}>
+             <li onClick={()=>convohandle(e)} style={{cursor:'pointer'}}>
             <Onlinefriends id={e}/>
             </li>
     )):<div><b>No one is online</b></div>

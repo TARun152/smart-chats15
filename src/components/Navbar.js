@@ -8,10 +8,11 @@ import image from '../assests/user.png'
 import axios from 'axios';
 export default function Navbar() {
   const history = useHistory()
-  const { user, dispatch, error } = useContext(AuthContext)
+  const { user,setuser,settoken} = useContext(AuthContext)
   const handlelog = () => {
     sessionStorage.removeItem('token')
-    dispatch({ type: "LOGIN_FAILURE", payload: error })
+    setuser({})
+    settoken("")
     history.push('/login')
   }
   const [search, setsearch] = useState("")
