@@ -7,7 +7,7 @@ import { useHistory } from 'react-router'
 import Freindthumb from './Friendthumb'
 export default function About(props) {
     const history=useHistory()
-    const {user:curruser} = useContext(AuthContext)
+    const {user:curruser,setuser} = useContext(AuthContext)
     const [postImage, setpostImage] = useState(null)
     const handleChange= (e)=>{
         if(e.target.files[0]){
@@ -46,18 +46,16 @@ export default function About(props) {
         )
     }
     const des = useRef()
-    const [followed, setfollowed] = useState(props.user?.followers?.includes(curruser?._id))
+    const [followed, setfollowed] = useState(curruser?.following?.includes(props.user?._id))
   const [friends, setfriends] = useState(null)
   useEffect(() => {
-    console.log(curruser?._id)
-    console.log(props.user?._id)
-    console.log(props.user?.followers?.includes(curruser?._id))
-    setfollowed(props.user?.followers?.includes(curruser?._id))
-  }, [])
+    console.log(curruser?.following?.includes(props.user?._id))
+    setfollowed(curruser?.following?.includes(props.user?._id))
+  }, [curruser])
   useEffect(() => {
     let a = props.user?.following
     if (props.user?.following) {
-      a = a.concat(props.user?.followers.filter(e=>!props.user?.following.includes(e)))
+      a = a.concat(props.user?.followers?.filter(e=>!props.user?.following?.includes(e)))
     }
     else {
       a = props.user?.followers
@@ -68,39 +66,39 @@ export default function About(props) {
   const handlefollow=async()=>{
     if(!followed)
     {
+      let newfollowing;
+      curruser?.following?.push(props.user?._id)
+      newfollowing=curruser?.following
+      setuser({...curruser,following:newfollowing})
     const res=await axios.put(process.env.REACT_APP_URL+`api/users/${props.user?._id}/follow`,{
       userId: curruser?._id
     })
-    if(res.data==="you are following")
-    {
-      window.location.reload()
-    }
   }
   else{
+    let newfollowing=curruser?.following?.filter(id=>id!==props.user?._id)
+      setuser({...curruser,following:newfollowing})
     const res=await axios.put(process.env.REACT_APP_URL+`api/users/${props.user?._id}/unfollow`,{
       userId: curruser?._id
     })
-    if(res.data==="you are unfollowing")
-    {
-      window.location.reload()
-    }
   }
-  setfollowed(!followed)
   }
   const handleEdit=async(e)=>{
     e.preventDefault()
-    if(city!==""||from!==""||relation!==""||desc!=="")
+    if(city!==""||from!==""||relation!==""||desc!==""||dob!=="")
     {
     const res=await axios.put(process.env.REACT_APP_URL+`api/users/${curruser?._id}`,{
       city:city!==""?city:curruser.city,
       from: from!==""?from:curruser.from,
       relationship:relation!==""?relation:curruser.relationship,
-      desc:desc!==""?desc:curruser.desc
+      desc:desc!==""?desc:curruser.desc,
+      DOB:dob!==""?dob:curruser?.DOB
     })
     setcity("")
     setfrom("")
     setrelation("")
     setdesc("")
+    setdob("")
+    console.log(res)
     if(res.data==="successfully updated")
     {
       window.location.reload()
@@ -111,6 +109,7 @@ export default function About(props) {
   const [from, setfrom] = useState("")
   const [relation, setrelation] = useState("")
   const [desc, setdesc] = useState("")
+  const [dob, setdob] = useState("")
     return (
         <>
         {
@@ -166,6 +165,10 @@ export default function About(props) {
             <label for="desc" class="col-form-label"><b>Description:</b></label>
             <input type="text" class="form-control" id="desc" value={desc} onChange={(e)=>setdesc(e.target.value)}/>
           </div>
+          <div class="mb-3">
+            <label for="desc" class="col-form-label"><b>DOB:</b></label>
+            <input type="date" class="form-control" id="dob" value={dob} onChange={(e)=>setdob(e.target.value)}/>
+          </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button class="btn btn-primary" data-bs-dismiss="modal" type="submit">Save changes</button>
@@ -178,6 +181,7 @@ export default function About(props) {
           <ul>
             <li><b>City:</b> {props.user?.city ? props.user?.city : "Unknown"}</li>
             <li><b>From:</b> {props.user?.from ? props.user?.from : "Unknown"}</li>
+            <li><b>DOB:</b> {props.user?.DOB ? new Date(props.user?.DOB).toLocaleDateString('en-GB') : "Unknown"}</li>
             <li><b>Relationship Status:</b> {props.user?.relationship ?props.user?.relationship.length>20?props.user?.relationship.slice(0,20):props.user?.relationship : "Unknown"}</li>
           </ul>
         </div>

@@ -4,18 +4,16 @@ import { AuthContext } from './context/AuthContext'
 import Freindthumbnail from './Freindthumbnail'
 export default function Info(props) {
   const {user:curruser,setuser} = useContext(AuthContext)
-  const [followed, setfollowed] = useState(props.user?.followers.includes(curruser?._id))
+  const [followed, setfollowed] = useState(curruser?.following?.includes(props.user?._id))
   const [friends, setfriends] = useState(null)
   useEffect(() => {
-    console.log(curruser?._id)
-    console.log(props.user?._id)
-    console.log(props.user?.followers.includes(curruser?._id))
-    setfollowed(props.user?.followers.includes(curruser?._id))
-  }, [])
+    console.log(curruser?.following?.includes(props.user?._id))
+    setfollowed(curruser?.following?.includes(props.user?._id))
+  }, [curruser])
   useEffect(() => {
     let a = props.user?.following
     if (props.user?.following) {
-      a = a.concat(props.user?.followers.filter(e=>!props.user?.following.includes(e)))
+      a = a.concat(props.user?.followers?.filter(e=>!props.user?.following?.includes(e)))
     }
     else {
       a = props.user?.followers
@@ -27,21 +25,20 @@ export default function Info(props) {
     if(!followed)
     {
       let newfollowing;
-      curruser.following.push(props.user?._id)
-      newfollowing=curruser.following
+      curruser?.following?.push(props.user?._id)
+      newfollowing=curruser?.following
       setuser({...curruser,following:newfollowing})
     const res=await axios.put(process.env.REACT_APP_URL+`api/users/${props.user?._id}/follow`,{
       userId: curruser?._id
     })
   }
   else{
-    let newfollowing=curruser.following.filter(id=>id!==props.user?._id)
+    let newfollowing=curruser?.following?.filter(id=>id!==props.user?._id)
       setuser({...curruser,following:newfollowing})
     const res=await axios.put(process.env.REACT_APP_URL+`api/users/${props.user?._id}/unfollow`,{
       userId: curruser?._id
     })
   }
-  setfollowed(!followed)
   }
   const handleEdit=async(e)=>{
     e.preventDefault()
